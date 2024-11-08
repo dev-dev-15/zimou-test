@@ -40,8 +40,8 @@ class Package extends Model
 
     protected $casts = [
         'can_be_opened' => 'boolean',
-        'delivered_at' => 'datetime',
-        'status_updated_at' => 'datetime',
+        // 'delivered_at' => 'datetime',
+        // 'status_updated_at' => 'datetime',
         'free_delivery' => 'boolean',
     ];
 
