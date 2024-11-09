@@ -4,6 +4,7 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Support\Str;
 
 class Package extends Model
 {
@@ -74,6 +75,12 @@ class Package extends Model
     // Events
     protected static function booted(): void
     {
+        static::creating(function ($package) {
+            $package->uuid = (string) Str::uuid();
+            $package->tracking_code = 'ZIMOU-' . Str::upper(Str::random(15));
+            $package->status_id = 1;
+        });
+
         static::updating(function ($package) {
             if ($package->isDirty('status_id')) {
                 $package->status_updated_at = now();
