@@ -19,7 +19,7 @@ class PackagesExport implements FromCollection, WithHeadings, ShouldAutoSize
                 return [
                     'tracking_code' => $package->tracking_code,
                     'store_name' => $package->store->name,
-                    'package_name' => $package->package_name,
+                    'package_name' => $package->name,
                     'status' => $package->status->id,
                     'client_full_name' => $package->client_first_name . ' ' . $package->client_last_name,
                     'phone' => $package->client_phone,
