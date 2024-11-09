@@ -10,7 +10,7 @@ class Store extends Model
         'code',
         'name',
         'email',
-        'phones',
+        'phone',
         'company_name',
         'capital',
         'address',

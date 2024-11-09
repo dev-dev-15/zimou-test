@@ -16,7 +16,7 @@ return new class extends Migration
             $table->char('code', 10)->nullable();
             $table->string('name');
             $table->string('email');
-            $table->string('phones');
+            $table->string('phone');
             $table->string('company_name')->nullable();
             $table->string('capital')->nullable();
             $table->string('address')->nullable();
