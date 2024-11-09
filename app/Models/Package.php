@@ -66,6 +66,11 @@ class Package extends Model
         return $this->belongsTo(PackageStatus::class);
     }
 
+    public function store()
+    {
+        return $this->belongsTo(Store::class);
+    }
+
     // Events
     protected static function booted(): void
     {
