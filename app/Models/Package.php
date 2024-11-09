@@ -47,11 +47,6 @@ class Package extends Model
         'free_delivery' => 'boolean',
     ];
 
-    public function wilaya()
-    {
-        return $this->belongsTo(Wilaya::class);
-    }
-
     public function commune()
     {
         return $this->belongsTo(Commune::class);
