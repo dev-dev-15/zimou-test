@@ -7,7 +7,7 @@ use Maatwebsite\Excel\Concerns\FromCollection;
 use Maatwebsite\Excel\Concerns\ShouldAutoSize;
 use Maatwebsite\Excel\Concerns\WithHeadings;
 
-class PackagesExport implements FromCollection, WithHeadings, ShouldAutoSize
+class PackagesExport implements FromCollection, ShouldAutoSize, WithHeadings
 {
     /**
      * @return \Illuminate\Support\Collection
@@ -21,7 +21,7 @@ class PackagesExport implements FromCollection, WithHeadings, ShouldAutoSize
                     'store_name' => $package->store->name,
                     'package_name' => $package->name,
                     'status' => $package->status->id,
-                    'client_full_name' => $package->client_first_name . ' ' . $package->client_last_name,
+                    'client_full_name' => $package->client_first_name.' '.$package->client_last_name,
                     'phone' => $package->client_phone,
                     'wilaya' => $package->commune->wilaya->name,
                     'commune' => $package->commune->name,

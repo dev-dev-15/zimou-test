@@ -3,13 +3,10 @@
 namespace Database\Seeders;
 
 use App\Models\Wilaya;
-use Carbon\Carbon;
 use Illuminate\Database\Seeder;
-use Illuminate\Support\Facades\DB;
 
 class WilayaSeeder extends Seeder
 {
-
     protected $wilayas = [
         [
             'name' => 'Adrar',

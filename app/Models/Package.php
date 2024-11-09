@@ -8,7 +8,7 @@ use Illuminate\Support\Str;
 
 class Package extends Model
 {
-    Use HasFactory;
+    use HasFactory;
 
     protected $fillable = [
         'uuid',
@@ -72,7 +72,7 @@ class Package extends Model
     {
         static::creating(function ($package) {
             $package->uuid = (string) Str::uuid();
-            $package->tracking_code = 'ZIMOU-' . Str::upper(Str::random(15));
+            $package->tracking_code = 'ZIMOU-'.Str::upper(Str::random(15));
             $package->status_id = 1;
         });
 

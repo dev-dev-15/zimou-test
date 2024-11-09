@@ -4,7 +4,6 @@ namespace Database\Seeders;
 
 use App\Models\DeliveryType;
 use Illuminate\Database\Seeder;
-use Illuminate\Support\Facades\DB;
 
 class DeliveryTypeSeeder extends Seeder
 {
