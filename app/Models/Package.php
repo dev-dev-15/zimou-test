@@ -65,4 +65,14 @@ class Package extends Model
     {
         return $this->belongsTo(PackageStatus::class);
     }
+
+    // Events
+    protected static function booted(): void
+    {
+        static::updating(function ($package) {
+            if ($package->isDirty('status_id')) {
+                $package->status_updated_at = now();
+            }
+        });
+    }
 }
