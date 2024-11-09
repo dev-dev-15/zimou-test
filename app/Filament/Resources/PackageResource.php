@@ -2,6 +2,7 @@
 
 namespace App\Filament\Resources;
 
+use App\Exports\PackagesExport;
 use App\Filament\Resources\PackageResource\Pages;
 use App\Filament\Resources\PackageResource\RelationManagers;
 use App\Models\Package;
@@ -12,14 +13,17 @@ use Filament\Forms\Components\TextInput;
 use Filament\Forms\Components\Toggle;
 use Filament\Forms\Components\Wizard;
 use Filament\Forms\Form;
+use Filament\Notifications\Notification;
 use Filament\Resources\Resource;
 use Filament\Tables;
+use Filament\Tables\Actions\Action;
 use Filament\Tables\Actions\ActionGroup;
 use Filament\Tables\Columns\TextColumn;
 use Filament\Tables\Filters\SelectFilter;
 use Filament\Tables\Table;
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\SoftDeletingScope;
+use Maatwebsite\Excel\Facades\Excel;
 
 class PackageResource extends Resource
 {
@@ -262,6 +266,32 @@ class PackageResource extends Resource
                 Tables\Actions\BulkActionGroup::make([
                     Tables\Actions\DeleteBulkAction::make(),
                 ]),
+            ])
+            ->headerActions([
+                Action::make('Export all packages')
+                    ->icon('heroicon-o-arrow-up-on-square')
+                    ->form([
+                        Select::make('file_type')
+                            ->label('File Type')
+                            ->default('xlsx')
+                            ->selectablePlaceholder(false)
+                            ->options([
+                                'csv' => 'CSV',
+                                'xlsx' => 'Excel',
+                            ])
+                            ->required(),
+                    ])
+                    ->action(function (array $data) {
+                        $file = Excel::download(new PackagesExport, 'packages.' . $data['file_type']);
+
+                        Notification::make()
+                            ->title('Download started')
+                            ->success()
+                            ->body('The download should be started in a few seconds.')
+                            ->send();
+
+                        return $file;
+                    })
             ]);
     }
 
