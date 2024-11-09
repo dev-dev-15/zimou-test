@@ -30,7 +30,7 @@ class CreateStoresAndPackagesCommand extends Command
         ////////// Create 5000 stores
         $this->info('Creating 5000 stores...');
 
-        $stores = Store::factory()->count(10)->make();
+        $stores = Store::factory()->count(5000)->make();
         Store::insert($stores->toArray()); // Using insert() for faster performance
 
         $this->info('5000 stores created.');
@@ -44,7 +44,7 @@ class CreateStoresAndPackagesCommand extends Command
         foreach ($storesIds as $storesId) {
             // Using array_merge() to accumulate packages for each store
             // This approach is faster and more performant than using create() in a loop
-            $packages = array_merge($packages, Package::factory(10)->make(['store_id' => $storesId])->toArray());
+            $packages = array_merge($packages, Package::factory(100)->make(['store_id' => $storesId])->toArray());
         }
         
         // Using array_chunk() to split the packages array into chunks of 1000
