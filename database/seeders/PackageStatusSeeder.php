@@ -9,18 +9,18 @@ use Illuminate\Support\Facades\DB;
 class PackageStatusSeeder extends Seeder
 {
     protected $statuses = [
-        ['name' => 'label_created'],
-        ['name' => 'picked_up'],
-        ['name' => 'in_transit'],
-        ['name' => 'out_for_delivery'],
-        ['name' => 'delivered'],
-        ['name' => 'delivery_attempt_failed'],
-        ['name' => 'returned_to_sender'],
-        ['name' => 'delayed'],
-        ['name' => 'lost'],
-        ['name' => 'damaged'],
-        ['name' => 'held_at_location'],
-        ['name' => 'awaiting_pickup'],
+        ['name' => 'Label Created'],
+        ['name' => 'Picked Up'],
+        ['name' => 'In Transit'],
+        ['name' => 'Out For Delivery'],
+        ['name' => 'Delivered'],
+        ['name' => 'Delivery Attempt Failed'],
+        ['name' => 'Returned To Sender'],
+        ['name' => 'Delayed'],
+        ['name' => 'Lost'],
+        ['name' => 'Damaged'],
+        ['name' => 'Held At Location'],
+        ['name' => 'Awaiting Pickup'],
     ];
 
     /**
