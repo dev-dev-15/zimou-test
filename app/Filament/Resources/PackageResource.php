@@ -16,6 +16,7 @@ use Filament\Resources\Resource;
 use Filament\Tables;
 use Filament\Tables\Actions\ActionGroup;
 use Filament\Tables\Columns\TextColumn;
+use Filament\Tables\Filters\SelectFilter;
 use Filament\Tables\Table;
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\SoftDeletingScope;
@@ -219,7 +220,37 @@ class PackageResource extends Resource
                     }),
             ])
             ->filters([
-                //
+                SelectFilter::make('status_id')
+                    ->label('Status')
+                    ->options([
+                        1 => 'Label Created',
+                        2 => 'Picked Up',
+                        3 => 'In Transit',
+                        4 => 'Out For Delivery',
+                        5 => 'Delivered',
+                        6 => 'Delivery Attempt Failed',
+                        7 => 'Returned To Sender',
+                        8 => 'Delayed',
+                        9 => 'Lost',
+                        10 => 'Damaged',
+                        11 => 'Held At Location',
+                        12 => 'Awaiting Pickup',
+                    ])
+                    ->placeholder('Select Status'),
+
+                SelectFilter::make('wilaya_id')
+                    ->label('Wilaya')
+                    ->relationship('commune.wilaya', 'name')
+                    ->searchable()
+                    ->preload()
+                    ->placeholder('Select Wilaya'),
+
+                SelectFilter::make('commune_id')
+                    ->label('Commune')
+                    ->relationship('commune', 'name')
+                    ->searchable()
+                    ->preload()
+                    ->placeholder('Select Commune'),
             ])
             ->actions([
                 ActionGroup::make([
