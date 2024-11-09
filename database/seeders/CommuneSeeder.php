@@ -6181,16 +6181,6 @@ class CommuneSeeder extends Seeder
     public function run(): void
     {
         // Because the data is too large, I used Model::insert() instead of Model::create() because it's faster and more efficient.
-        // And because insert() doesn't trigger the model events like creating, created, saving, saved etc.
-        // I manually added the timestamps to the data before inserting it into the database.
-
-        $timestamp = Carbon::now();
-
-        foreach ($this->communes as &$commune) {
-            $commune['created_at'] = $timestamp;
-            $commune['updated_at'] = $timestamp;
-        }
-
         Commune::insert($this->communes);
     }
 }

@@ -28,8 +28,6 @@ class PackageStatusSeeder extends Seeder
      */
     public function run(): void
     {
-        foreach ($this->statuses as $status) {
-            PackageStatus::create($status);
-        }
+        PackageStatus::insert($this->statuses);
     }
 }

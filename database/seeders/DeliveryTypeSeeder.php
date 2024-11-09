@@ -20,8 +20,6 @@ class DeliveryTypeSeeder extends Seeder
      */
     public function run(): void
     {
-    foreach ($this->deliveryTypes as $type) {
-        DeliveryType::create($type);
-    }
+        DeliveryType::insert($this->deliveryTypes);
     }
 }

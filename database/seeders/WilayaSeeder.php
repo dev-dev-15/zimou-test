@@ -192,8 +192,6 @@ class WilayaSeeder extends Seeder
      */
     public function run(): void
     {
-        foreach ($this->wilayas as $wilaya) {
-            Wilaya::create($wilaya);
-        }
+        Wilaya::insert($this->wilayas);
     }
 }
