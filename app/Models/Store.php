@@ -16,7 +16,7 @@ class Store extends Model
         'address',
         'register_commerce_number',
         'nif',
-        'legal_form',
+        'legal_form_id',
         'status',
         'can_update_preparing_packages',
     ];

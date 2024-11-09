@@ -22,8 +22,8 @@ return new class extends Migration
             $table->string('address')->nullable();
             $table->string('register_commerce_number')->nullable();
             $table->string('nif')->nullable();
-            $table->unsignedInteger('legal_form')->nullable()->default(1);
             $table->unsignedInteger('status')->default(1);
+            $table->foreignId('legal_form_id')->nullable()->constrained()->onDelete('set null');
             $table->boolean('can_update_preparing_packages')->default(false);
             $table->timestamps();
         });
