@@ -4,7 +4,9 @@ namespace App\Filament\Resources;
 
 use App\Exports\PackagesExport;
 use App\Filament\Resources\PackageResource\Pages;
+use App\Filament\Resources\PackageResource\RelationManagers;
 use App\Models\Package;
+use Filament\Forms;
 use Filament\Forms\Components\Section;
 use Filament\Forms\Components\Select;
 use Filament\Forms\Components\TextInput;
@@ -16,8 +18,11 @@ use Filament\Resources\Resource;
 use Filament\Tables;
 use Filament\Tables\Actions\Action;
 use Filament\Tables\Actions\ActionGroup;
+use Filament\Tables\Columns\TextColumn;
 use Filament\Tables\Filters\SelectFilter;
 use Filament\Tables\Table;
+use Illuminate\Database\Eloquent\Builder;
+use Illuminate\Database\Eloquent\SoftDeletingScope;
 use Maatwebsite\Excel\Facades\Excel;
 
 class PackageResource extends Resource
@@ -133,7 +138,7 @@ class PackageResource extends Resource
                                 ->label('Delivery Price')
                                 ->required()
                                 ->numeric()
-                                ->disabled(fn (callable $get) => $get('free_delivery')),
+                                ->disabled(fn(callable $get) => $get('free_delivery')),
 
                             TextInput::make('partner_delivery_price')
                                 ->numeric()
@@ -163,7 +168,7 @@ class PackageResource extends Resource
                                 ->label('Client Phone 2')
                                 ->required(),
                         ]),
-                ])->columnSpanFull(),
+                ])->columnSpanFull()
             ]);
     }
 
@@ -184,9 +189,9 @@ class PackageResource extends Resource
                     ->searchable(),
                 Tables\Columns\TextColumn::make('client_first_name')
                     ->label('Client Full Name')
-                    ->formatStateUsing(fn ($record) => $record->client_first_name.' '.$record->client_last_name)
+                    ->formatStateUsing(fn($record) => $record->client_first_name . ' ' . $record->client_last_name)
                     ->searchable()
-                    ->formatStateUsing(fn ($record) => $record->client_first_name.' '.$record->client_last_name),
+                    ->formatStateUsing(fn($record) => $record->client_first_name . ' ' . $record->client_last_name),
                 Tables\Columns\TextColumn::make('client_phone')
                     ->label('Phone')
                     ->searchable(),
@@ -203,7 +208,7 @@ class PackageResource extends Resource
                     ->label('Status Name')
                     ->searchable()
                     ->badge()
-                    ->color(fn (string $state): string => match ($state) {
+                    ->color(fn(string $state): string => match ($state) {
                         'Label Created' => 'info',
                         'Picked Up' => 'info',
                         'In Transit' => 'gray',
@@ -277,7 +282,7 @@ class PackageResource extends Resource
                             ->required(),
                     ])
                     ->action(function (array $data) {
-                        $file = Excel::download(new PackagesExport, 'Packages.'.$data['file_type']);
+                        $file = Excel::download(new PackagesExport, 'Packages.' . $data['file_type']);
 
                         Notification::make()
                             ->title('Download started')
@@ -286,7 +291,7 @@ class PackageResource extends Resource
                             ->send();
 
                         return $file;
-                    }),
+                    })
             ]);
     }
 

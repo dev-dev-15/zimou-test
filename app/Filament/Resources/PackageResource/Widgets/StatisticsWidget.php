@@ -19,7 +19,7 @@ class StatisticsWidget extends BaseWidget
 
             Stat::make('Total packages', \App\Models\Package::count())
                 ->icon('heroicon-m-cube')
-                ->description('The total number of packages in the system.'),
+                ->description('The total number of packages in the system.')
         ];
     }
 }

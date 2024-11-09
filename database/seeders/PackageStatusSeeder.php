@@ -4,6 +4,7 @@ namespace Database\Seeders;
 
 use App\Models\PackageStatus;
 use Illuminate\Database\Seeder;
+use Illuminate\Support\Facades\DB;
 
 class PackageStatusSeeder extends Seeder
 {

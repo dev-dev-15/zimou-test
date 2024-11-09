@@ -17,7 +17,7 @@ class PackageFactory extends Factory
     {
         return [
             'uuid' => Str::uuid(),
-            'tracking_code' => 'ZIMOU-'.fake()->unique()->regexify('[A-Z0-9]{15}'),
+            'tracking_code' => 'ZIMOU-' . fake()->unique()->regexify('[A-Z0-9]{15}'),
             'commune_id' => fake()->numberBetween(1, 1541),
             'delivery_type_id' => fake()->numberBetween(1, 4),
             'status_id' => $statusId = fake()->numberBetween(1, 12),
@@ -35,7 +35,7 @@ class PackageFactory extends Factory
             'delivered_at' => $statusId === 5 ? fake()->dateTime()->format('Y-m-d H:i:s') : null,
             'extra_weight_price' => fake()->numberBetween(0, 2000),
             'free_delivery' => $freeDelivery = fake()->boolean,
-            'delivery_price' => ! $freeDelivery ? fake()->randomFloat(2, 450, 1300) : 0,
+            'delivery_price' => !$freeDelivery ? fake()->randomFloat(2, 450, 1300) : 0,
             'packaging_price' => fake()->numberBetween(0, 100),
             'partner_cod_price' => fake()->randomFloat(2, 0, 700),
             'partner_delivery_price' => fake()->numberBetween(150, 250),

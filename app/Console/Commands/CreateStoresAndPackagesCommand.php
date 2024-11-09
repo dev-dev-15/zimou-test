@@ -39,14 +39,14 @@ class CreateStoresAndPackagesCommand extends Command
         $this->info('Creating 100 packages for each store...');
 
         $storesIds = Store::pluck('id')->toArray();
-
+        
         $packages = [];
         foreach ($storesIds as $storesId) {
             // Using array_merge() to accumulate packages for each store
             // This approach is faster and more performant than using create() in a loop
             $packages = array_merge($packages, Package::factory(10)->make(['store_id' => $storesId])->toArray());
         }
-
+        
         // Using array_chunk() to split the packages array into chunks of 1000
         // This makes the insert() operation faster and more performant
         // NOTE: Because we are using insert(), timestamps will not be filled, but since it's a test data, it's okay
