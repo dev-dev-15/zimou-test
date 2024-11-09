@@ -282,7 +282,7 @@ class PackageResource extends Resource
                             ->required(),
                     ])
                     ->action(function (array $data) {
-                        $file = Excel::download(new PackagesExport, 'packages.' . $data['file_type']);
+                        $file = Excel::download(new PackagesExport, 'Packages.' . $data['file_type']);
 
                         Notification::make()
                             ->title('Download started')
