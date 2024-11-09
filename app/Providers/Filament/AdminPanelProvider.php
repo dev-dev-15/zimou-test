@@ -28,6 +28,7 @@ class AdminPanelProvider extends PanelProvider
             ->id('admin')
             ->path('admin')
             ->login()
+            ->registration()
             ->brandLogo(asset('imgs/zimou-express-logo.png'))
             ->brandLogoHeight('2.5rem')
             ->favicon(asset('imgs/favicon.ico'))
